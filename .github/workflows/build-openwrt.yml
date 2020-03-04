@@ -1,9 +1,7 @@
 #=================================================
-# https://github.com/P3TERX/Actions-OpenWrt
+# https://github.com/Goven/Actions-OpenWrt
 # Description: Build OpenWrt using GitHub Actions
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
+# Author: Goven
 #=================================================
 
 name: Build OpenWrt
@@ -18,8 +16,8 @@ on:
 #      - '.config'
 #  schedule:
 #    - cron: 0 8 * * 5
-#  watch:
-#    types: [started]
+  watch:
+    types: [started]
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
@@ -48,7 +46,7 @@ jobs:
         sudo rm -rf /swapfile /etc/apt/sources.list.d/*
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler
-        curl -fsSL https://raw.githubusercontent.com/P3TERX/dotfiles/master/.bashrc >> ~/.bashrc
+        curl -fsSL https://raw.githubusercontent.com/Goven/dotfiles/master/.bashrc >> ~/.bashrc
 
     - name: Free up disk space
       if: env.FREE_UP_DISK == 'true'
@@ -80,7 +78,7 @@ jobs:
         make defconfig
 
     - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
+      uses: goven/debugger-action@master
       if: env.SSH_ACTIONS == 'true'
 
     - name: Download package
